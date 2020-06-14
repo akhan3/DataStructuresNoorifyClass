@@ -1,3 +1,7 @@
+""" This module contains class definitions for a singly linked list
+"""
+
+
 class SinglyNode:
     """ A class to represent a node in a singly linked list
     """

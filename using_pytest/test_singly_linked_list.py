@@ -1,6 +1,9 @@
+""" This module contains test cases for a singly linked list
+"""
+
 # Instructions to run these tests
-#   $ pytest-3 -lis
-#   $ python3-coverage run -m pytest -lis
+#   $ pytest-3 -l
+#   $ python3-coverage run -m pytest -l
 #   $ python3-coverage html
 #   $ xdg-open htmlcov/index.html
 #   $ pylint --good-names=x,k,N *.py
@@ -8,7 +11,7 @@
 
 from math import pi
 import pytest
-from SinglyLinkedList import SinglyNode, SinglyLinkedList
+from singly_linked_list import SinglyNode, SinglyLinkedList
 
 
 def test_node_constructor():
