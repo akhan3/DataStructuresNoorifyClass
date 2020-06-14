@@ -1,4 +1,4 @@
-class Node:
+class SinglyNode:
     """ A class to represent a node in a singly linked list
     """
 
@@ -10,7 +10,7 @@ class Node:
         return "({}, {})".format(self.data, hex(id(self.next)))
 
 
-class LinkedList:
+class SinglyLinkedList:
     """ A class to represent a singly linked list
     """
 
@@ -22,7 +22,7 @@ class LinkedList:
             for item in iterable:
                 self.append(item)
         except TypeError:  # if not iterable
-            if isinstance(iterable, Node):  # check if it's a Node
+            if isinstance(iterable, SinglyNode):  # check if it's a node
                 self.head = iterable
                 self.size = self._count_nodes()
 
@@ -67,7 +67,7 @@ class LinkedList:
     def appendleft(self, data):
         """ Append a node at the beginning of the list
         """
-        self.head = Node(data, self.head)
+        self.head = SinglyNode(data, self.head)
         self.size += 1
 
     def append(self, data):
@@ -77,7 +77,7 @@ class LinkedList:
         try:
             while node.next is not None:
                 node = node.next
-            node.next = Node(data)
+            node.next = SinglyNode(data)
             self.size += 1
         except AttributeError:  # if list is empty
             self.appendleft(data)
