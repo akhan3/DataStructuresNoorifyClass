@@ -24,7 +24,7 @@ class LinkedList:
         except TypeError:  # if not iterable
             if isinstance(iterable, Node):  # check if it's a Node
                 self.head = iterable
-                self.size = self._getsize()
+                self.size = self._count_nodes()
 
     def __getitem__(self, key):
         """ Overloaded index operator []
@@ -32,22 +32,26 @@ class LinkedList:
         node = self.head
         try:
             data = node.data
-            for k in range(key):
+            for _ in range(key):
                 node = node.next
                 data = node.data
             return data
         except AttributeError:
             raise IndexError("index out of range")
 
-    def _getsize(self):
-        """ Calculate size by traversing the list
+    def _count_nodes(self):
+        """ Count nodes in the list by traversing it in full.
+            This method is only ever called in the constructor to get the size
+            if the list was initialized from a subset of an existing list.
+            From there onwards, ".size" is maintained through book-keeping without
+            ever a need to call this method.
         """
-        n = 0
+        count = 0
         node = self.head
         while node:
             node = node.next
-            n += 1
-        return n
+            count += 1
+        return count
 
     def clear(self):
         """ Clear the list
@@ -61,28 +65,33 @@ class LinkedList:
         return self.size == 0
 
     def appendleft(self, data):
-        """ Append a node at the end of the list
+        """ Append a node at the beginning of the list
         """
-        n1 = Node(data, self.head)
-        self.head = n1
+        self.head = Node(data, self.head)
         self.size += 1
 
     def append(self, data):
+        """ Append a node at the end of the list
+        """
         node = self.head
         try:
             while node.next is not None:
                 node = node.next
-            n1 = Node(data)
-            node.next = n1
+            node.next = Node(data)
             self.size += 1
         except AttributeError:  # if list is empty
             self.appendleft(data)
 
-    def _gotoNextToLastNode(self):
-        node = self.head
-        while node.next.next is not None:
-            node = node.next
-        return node
+    def _goto_next_to_last_node(self):
+        """ Traverse to second to the last node in the list
+        """
+        try:
+            node = self.head
+            while node.next.next is not None:
+                node = node.next
+            return node
+        except AttributeError:
+            raise IndexError("index out of range")
 
     def pop(self):
         if self.size == 0:
@@ -92,9 +101,9 @@ class LinkedList:
             self.clear()
             return data
         else:
-            n1 = self._gotoNextToLastNode()
-            data = n1.next.data
-            n1.next = None
+            node = self._goto_next_to_last_node()
+            data = node.next.data
+            node.next = None
             self.size -= 1
             return data
 
