@@ -7,3 +7,8 @@
 - `sudo apt install pylint`
 - `sudo apt install black`
 -
+
+## TODO
+
+- Setup using virtual environment
+- Setup using docker
