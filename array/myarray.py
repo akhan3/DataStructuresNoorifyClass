@@ -1,4 +1,5 @@
-from array import *
+from array import array
+
 
 class MyArray(object):
 	def __init__(self, typecode='i', *args):
