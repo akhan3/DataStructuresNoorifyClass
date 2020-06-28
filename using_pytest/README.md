@@ -10,5 +10,5 @@
 
 ## TODO
 
-- Setup using virtual environment
-- Setup using docker
+- [x] Setup using virtual environment
+- [ ] Setup using docker
