@@ -65,23 +65,17 @@ class LinkedList(object):
         self._size += 1
         return True
 
-    # TODO: Refactor top_back and pop_back
     def pop_front(self):
-        if self._size == 0:
-            raise ValueError("cannot pop from an empty list")
-        else:
-            data = self.head.data
-            self.head = self.head.next
-            self._size -= 1
-            return data
+        data = self.top_front()
+        self.head = self.head.next
+        self._size -= 1
+        return data
 
     def top_front(self):
         if self._size == 0:
             raise ValueError("cannot pop from an empty list")
         else:
             data = self.head.data
-            # self.head = self.head.next
-            # self._size -= 1
             return data
 
     def push_back(self, data):
