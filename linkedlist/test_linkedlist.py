@@ -516,3 +516,17 @@ class LinkedListTests(unittest.TestCase):
 
         # Assert
         self.assertTrue(linkedlist.head and linkedlist.head.data == "Usman")
+
+    def test_reverse_when_10_items_linkedlist(self):
+        # Arrange
+        linkedlist = LinkedList()
+        for k in range(10):
+            linkedlist.push_back(k + 400)
+
+        # Act
+        print(linkedlist)
+        linkedlist.reverse()
+        print(linkedlist)
+
+        # Assert
+        self.assertTrue(linkedlist.head and linkedlist.head.data == 409)
