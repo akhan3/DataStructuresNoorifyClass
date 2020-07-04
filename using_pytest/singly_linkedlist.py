@@ -21,7 +21,8 @@ class SinglyLinkedList:
     def __init__(self, iterable=None):
         """ Overloaded constructor
         """
-        self.clear()  # start as blank
+        self.head = None
+        self.size = 0
         try:
             for item in iterable:
                 self.append(item)
@@ -60,8 +61,7 @@ class SinglyLinkedList:
     def clear(self):
         """ Clear the list
         """
-        self.head = None
-        self.size = 0
+        self.__init__()
 
     def isempty(self):
         """ Check if the list is empty
