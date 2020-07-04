@@ -524,9 +524,9 @@ class LinkedListTests(unittest.TestCase):
             linkedlist.push_back(k + 400)
 
         # Act
-        print(linkedlist)
+        # print(linkedlist)
         linkedlist.reverse()
-        print(linkedlist)
+        # print(linkedlist)
 
         # Assert
         self.assertTrue(linkedlist.head and linkedlist.head.data == 409)
