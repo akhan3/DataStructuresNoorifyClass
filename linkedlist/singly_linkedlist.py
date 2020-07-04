@@ -135,11 +135,11 @@ class LinkedList(object):
         node_prev = None
         while node is not None:
             if node.data == data:
-                if node == self.head:       # if head node
+                if node == self.head:  # if head node
                     self.pop_front()
-                elif node.next == None:     # if tail node
+                elif node.next == None:  # if tail node
                     self.pop_back()
-                else:                       # if somewhere in the middle
+                else:  # if somewhere in the middle
                     node_prev.next = node.next
                     self._size -= 1
                 return True
@@ -155,15 +155,15 @@ class LinkedList(object):
             return
         elif self._size == 1:
             return
-        node = self.head.next # start from 2nd node
+        node = self.head.next  # start from 2nd node
         orig_prev_node = self.head
-        orig_prev_node.next = None # turn original head into tail
+        orig_prev_node.next = None  # turn original head into tail
         while node is not None:
             orig_next_node = node.next
             node.next = orig_prev_node
             orig_prev_node = node
             node = orig_next_node
-        self.head = orig_prev_node   # assign the new head
+        self.head = orig_prev_node  # assign the new head
 
     # def reverse(self, method="recurrsive"):
     def reverse(self, method="iterative"):
