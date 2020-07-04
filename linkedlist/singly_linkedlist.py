@@ -19,7 +19,7 @@ class LinkedList(object):
         """
         self.__init__()
 
-    def _goto_next_to_last_node(self):
+    def _goto_one_before_last_node(self):
         """ Traverse to second to the last node in the list
         """
         try:
@@ -100,7 +100,7 @@ class LinkedList(object):
             self.clear()
             return data
         else:
-            node = self._goto_next_to_last_node()
+            node = self._goto_one_before_last_node()
             data = node.next.data
             node.next = None
             self._size -= 1
@@ -114,7 +114,7 @@ class LinkedList(object):
             # self.clear()
             return data
         else:
-            node = self._goto_next_to_last_node()
+            node = self._goto_one_before_last_node()
             data = node.next.data
             # node.next = None
             # self._size -= 1
