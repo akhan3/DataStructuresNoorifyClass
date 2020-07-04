@@ -133,8 +133,8 @@ class LinkedList(object):
                     node_prev.next = node.next
                     self._size -= 1
                 return True
-            node_prev = node
             node = node.next
+            node_prev = node
         raise ValueError("item not found")
 
     # TODO: Refactor below
