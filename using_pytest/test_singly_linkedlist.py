@@ -11,7 +11,7 @@
 
 from math import pi
 import pytest
-from singly_linked_list import SinglyNode, SinglyLinkedList
+from singly_linkedlist import SinglyNode, SinglyLinkedList
 
 
 def test_node_constructor():
