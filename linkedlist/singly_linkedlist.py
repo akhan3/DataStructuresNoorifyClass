@@ -4,7 +4,7 @@ class Node(object):
         self.data = data
         self.next = next
 
-    def __str__(self):
+    def __repr__(self):
         return "0x{:x}:[{}|0x{:x}]".format(id(self), self.data, id(self.next))
 
 
