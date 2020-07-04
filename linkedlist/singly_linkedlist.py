@@ -127,7 +127,7 @@ class LinkedList(object):
             if node.data == data:
                 if node == self.head:  # if head node
                     self.pop_front()
-                elif node.next == None:  # if tail node
+                elif node.next is None:  # if tail node
                     self.pop_back()
                 else:  # if somewhere in the middle
                     node_prev.next = node.next
