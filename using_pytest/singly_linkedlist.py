@@ -22,14 +22,14 @@ class SinglyLinkedList:
         """ Overloaded constructor
         """
         self.head = None
-        self.size = 0
+        self._size = 0
         try:
             for item in iterable:
                 self.append(item)
         except TypeError:  # if not iterable
             if isinstance(iterable, SinglyNode):  # check if it's a node
                 self.head = iterable
-                self.size = self._count_nodes()
+                self._size = self._count_nodes()
 
     def __getitem__(self, key):
         """ Overloaded index operator []
@@ -48,7 +48,7 @@ class SinglyLinkedList:
         """ Count nodes in the list by traversing it in full.
             This method is only ever called in the constructor to get the size
             if the list was initialized from a subset of an existing list.
-            From there onwards, ".size" is maintained through book-keeping without
+            From there onwards, "._size" is maintained through book-keeping without
             ever a need to call this method.
         """
         count = 0
@@ -63,16 +63,21 @@ class SinglyLinkedList:
         """
         self.__init__()
 
+    def size(self):
+        """ Clear the list
+        """
+        return self._size
+
     def isempty(self):
         """ Check if the list is empty
         """
-        return self.size == 0
+        return self._size == 0
 
     def appendleft(self, data):
         """ Append a node at the beginning of the list
         """
         self.head = SinglyNode(data, self.head)
-        self.size += 1
+        self._size += 1
 
     def append(self, data):
         """ Append a node at the end of the list
@@ -82,7 +87,7 @@ class SinglyLinkedList:
             while node.next is not None:
                 node = node.next
             node.next = SinglyNode(data)
-            self.size += 1
+            self._size += 1
         except AttributeError:  # if list is empty
             self.appendleft(data)
 
@@ -98,9 +103,9 @@ class SinglyLinkedList:
             raise IndexError("index out of range")
 
     def pop(self):
-        if self.size == 0:
+        if self._size == 0:
             raise IndexError("index out of range")
-        elif self.size == 1:
+        elif self._size == 1:
             data = self.head.data
             self.clear()
             return data
@@ -108,20 +113,20 @@ class SinglyLinkedList:
             node = self._goto_next_to_last_node()
             data = node.next.data
             node.next = None
-            self.size -= 1
+            self._size -= 1
             return data
 
     def popleft(self):
-        if self.size == 0:
+        if self._size == 0:
             raise IndexError("index out of range")
         else:
             data = self.head.data
             self.head = self.head.next
-            self.size -= 1
+            self._size -= 1
             return data
 
     def __repr__(self):
-        result = "*** LinkedList (size = {}) ***\t".format(self.size)
+        result = "*** LinkedList (size = {}) ***\t".format(self._size)
         node = self.head
         while node:
             result += "{} -> ".format(node.data)

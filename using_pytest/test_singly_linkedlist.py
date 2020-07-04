@@ -26,13 +26,13 @@ def test_node_constructor():
 
 
 def test_list_constructor():
-    assert SinglyLinkedList().size == 0
-    assert SinglyLinkedList(None).size == 0
-    assert SinglyLinkedList([]).size == 0
-    assert SinglyLinkedList([5]).size == 1
-    assert SinglyLinkedList("Hello").size == len("Hello")
-    assert SinglyLinkedList(range(10)).size == 10
-    assert SinglyLinkedList({"Hello", 5, 6, 7, 5}).size == 4
+    assert SinglyLinkedList().size() == 0
+    assert SinglyLinkedList(None).size() == 0
+    assert SinglyLinkedList([]).size() == 0
+    assert SinglyLinkedList([5]).size() == 1
+    assert SinglyLinkedList("Hello").size() == len("Hello")
+    assert SinglyLinkedList(range(10)).size() == 10
+    assert SinglyLinkedList({"Hello", 5, 6, 7, 5}).size() == 4
 
 
 def test_isempty():
@@ -51,34 +51,34 @@ def test_isempty():
 def test_size_when_created_from_iterable():
     N = 8
     lis = SinglyLinkedList(range(N))
-    assert lis.size == N
+    assert lis.size() == N
 
 
 def test_size_when_created_from_iterable_string():
     seed = "Hello World!"
     lis = SinglyLinkedList(seed)
-    assert lis.size == len(seed)
+    assert lis.size() == len(seed)
 
 
 def test_size_when_created_from_middle_node_of_existing_linkedlist():
     N = 8
     lis = SinglyLinkedList(range(N))
     lis2 = SinglyLinkedList(lis.head.next.next)
-    assert lis2.size == N - 2
+    assert lis2.size() == N - 2
     assert lis2.head.data == 2
 
 
 def test_size_when_created_from_node():
     node = SinglyNode("Hello")
     lis = SinglyLinkedList(node)
-    assert lis.size == 1
+    assert lis.size() == 1
     assert lis.head is node
 
 
 def test_size_when_empty():
     lis = SinglyLinkedList()
     assert lis.head is None
-    assert lis.size == 0
+    assert lis.size() == 0
     assert lis.isempty()
 
 
@@ -87,14 +87,14 @@ def test_size_when_cleared():
     lis = SinglyLinkedList(range(N))
     lis.clear()
     assert lis.head is None
-    assert lis.size == 0
+    assert lis.size() == 0
     assert lis.isempty()
 
 
 def test_size():
     for k in range(7):
         lis = SinglyLinkedList(range(k))
-        assert lis.size == k
+        assert lis.size() == k
 
 
 def test_pop_when_empty():
@@ -108,7 +108,7 @@ def test_pop_when_1():
     lis = SinglyLinkedList([x])
     assert lis.pop() == x
     assert lis.head is None
-    assert lis.size == 0
+    assert lis.size() == 0
     assert lis.isempty()
 
 
@@ -117,7 +117,7 @@ def test_pop():
         lis = SinglyLinkedList(range(k))
         head = lis.head
         assert lis.pop() == k - 1
-        assert lis.size == k - 1
+        assert lis.size() == k - 1
         assert head == lis.head
 
 
@@ -169,7 +169,7 @@ def test_popleft_when_1():
     lis = SinglyLinkedList([x])
     assert lis.popleft() == x
     assert lis.head is None
-    assert lis.size == 0
+    assert lis.size() == 0
     assert lis.isempty()
 
 
@@ -179,5 +179,5 @@ def test_popleft():
         curr_data = lis.head.data
         next_head = lis.head.next
         assert lis.popleft() == curr_data
-        assert lis.size == k - 1
+        assert lis.size() == k - 1
         assert lis.head == next_head
