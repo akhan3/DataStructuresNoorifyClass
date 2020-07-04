@@ -441,6 +441,23 @@ class LinkedListTests(unittest.TestCase):
         self.assertRaises(ValueError, linkedlist.find, "Aamir")
         self.assertTrue(linkedlist.size() == 2)
 
+    def test_remove_when_item_is_present_and_non_head_middle_item_is_removed_when_list_is_10_items(
+        self
+    ):
+        # Arrange
+        linkedlist = LinkedList()
+        for k in range(10):
+            linkedlist.push_back(k + 400)
+        val_to_remove = 406
+
+        # Act
+        removed = linkedlist.remove(val_to_remove)
+
+        # Assert
+        self.assertTrue(removed)
+        self.assertRaises(ValueError, linkedlist.find, val_to_remove)
+        self.assertTrue(linkedlist.size() == 9)
+
     def test_remove_when_item_is_present_and_non_head_last_item_is_removed_when_linkedlist_is_more_than_one_item(
         self
     ):
