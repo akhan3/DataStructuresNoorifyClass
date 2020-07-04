@@ -91,34 +91,30 @@ class LinkedList(object):
             self.push_front(data)
         return True
 
-    # TODO: Refactor top_back and pop_back
     def pop_back(self):
-        if self._size == 0:
-            raise ValueError("cannot pop from an empty list")
-        elif self._size == 1:
-            data = self.head.data
+        (node_prev, node) = self._top_back_aux()
+        data = node.data
+        if not node_prev:
             self.clear()
-            return data
         else:
-            node = self._goto_one_before_last_node()
-            data = node.next.data
-            node.next = None
+            node_prev.next = None
             self._size -= 1
-            return data
+        return data
 
     def top_back(self):
+        (node_prev, node) = self._top_back_aux()
+        return node.data
+
+    def _top_back_aux(self):
         if self._size == 0:
             raise ValueError("cannot pop from an empty list")
         elif self._size == 1:
-            data = self.head.data
-            # self.clear()
-            return data
+            node_prev = None
+            node = self.head
         else:
-            node = self._goto_one_before_last_node()
-            data = node.next.data
-            # node.next = None
-            # self._size -= 1
-            return data
+            node_prev = self._goto_one_before_last_node()
+            node = node_prev.next
+        return (node_prev, node)
 
     def remove(self, data):
         """ Remove the first occurence of an item in the list
