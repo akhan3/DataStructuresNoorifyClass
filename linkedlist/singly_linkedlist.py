@@ -131,7 +131,6 @@ class LinkedList(object):
                     self.pop_back()
                 else:  # if somewhere in the middle
                     node_prev.next = node.next
-                    self._size -= 1
                 return True
             node = node.next
             node_prev = node
